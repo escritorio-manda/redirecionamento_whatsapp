@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionando...</title>
+    <script>
+        window.onload = function() {
+            // Lista dos números de WhatsApp
+            const links = [
+                "https://wa.me/5511950813532", // Glenda
+                "https://wa.me/5514996885121"  // Karen
+            ];
+
+            // Verifica qual foi o último número acionado
+            let lastIndex = localStorage.getItem('lastIndex');
+            if (lastIndex === null) {
+                lastIndex = 0; // Se não houver histórico, começa do primeiro
+            } else {
+                lastIndex = parseInt(lastIndex);
+                lastIndex = (lastIndex + 1) % links.length; // Alterna entre os números
+            }
+
+            // Salva o índice do número que será acionado
+            localStorage.setItem('lastIndex', lastIndex);
+
+            // Redirecionar para o número escolhido
+            window.location.href = links[lastIndex];
+        };
+    </script>
+</head>
+<body>
+    <p>Redirecionando para um dos contatos do WhatsApp...</p>
+</body>
+</html>
